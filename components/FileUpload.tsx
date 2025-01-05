@@ -23,7 +23,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 
 const formSchema = z.object({
   expiryHours: z.string().transform((val) => parseInt(val, 10)).refine((val) => val > 0 && val <= 168, {
-    message: 'Expiry time must be between 1 and 168 hours',
+    message: 'Expiry time must be between 1 and 24 minutes',
   }),
 });
 
@@ -122,10 +122,10 @@ export function FileUpload() {
               name="expiryHours"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Expiry Time (hours)</FormLabel>
+                  <FormLabel>Expiry Time (minutes)</FormLabel>
                   <FormControl>
                     <div className="flex items-center space-x-2">
-                      <Input type="number" min={0} max="5" {...field} />
+                      <Input type="number" min={0} max="24" {...field} />
                       <Clock className="h-4 w-4 text-muted-foreground" />
                     </div>
                   </FormControl>

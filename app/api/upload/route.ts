@@ -74,7 +74,12 @@ export async function POST(request: NextRequest) {
     await blockBlobClient.uploadData(buffer, options);
 
     // Calculate expiry date
+
+    console.log(expiryHours)
+
     const expiryTime = new Date(Date.now() + parseInt(expiryHours) * 60 * 1000);
+
+    console.log(expiryTime)
 
     // Create file record in MongoDB
     const fileRecord = await FileModel.create({
